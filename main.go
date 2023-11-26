@@ -12,15 +12,15 @@ import (
 
 // Get preferred outbound ip of this machine
 func GetOutboundIP() net.IP {
-    conn, err := net.Dial("tcp", "10.10.10.10:80")
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer conn.Close()
+	conn, err := net.Dial("tcp", "1.1.1.1:80")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
 
-    localAddr := conn.LocalAddr().(*net.UDPAddr)
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
 
-    return localAddr.IP
+	return localAddr.IP
 }
 
 func headersByRequestURI() gin.HandlerFunc {
