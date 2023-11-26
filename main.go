@@ -69,7 +69,7 @@ func main() {
 		})
 	})
 
-	println(GetOutboundIP())
+	println(GetOutboundIP().String())
 
 	router.Run(":28100")
 }
