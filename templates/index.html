@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{ .title }}
+        </title>
+        <style>
+            .title {
+                font-size: 1.6rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+            .container {
+                margin: 3% 12% 0;
+            }
+            .filesContainer {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                margin: 5px 0;
+                padding: 0 3px;
+            }
+            .footer {
+                margin: 30px 0;
+                font-size: 1.1rem;
+            }
+            .singleFile {
+                margin: 2px 0;
+                padding: 8px;
+                border-radius: 4px; 
+            }
+            .noFile {
+                margin: 2px 0;
+                padding: 8px;
+                border-radius: 4px; 
+            }
+            .singleFile:hover {
+                background-color: rgb(231, 246, 253);
+            }
+            .singleLine {
+                height: 1px;
+                background-color:  #72bbe7;
+            }
+            a {
+                color: #66b6e7;
+                text-decoration: none;
+                font-size: 1.1rem;
+            }
+            .fa-folder {
+                color: #66b6e7;
+            }
+            .nothing {
+                font-size: 1.1rem;
+            }
+        </style>
+        <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1>
+                <a class="title" href="/list">{{ .title }}</a>
+            </h1>
+            <h2>
+                <i class="far fa-compass"></i> 下载列表
+            </h2>
+            <div class="singleLine"></div>
+            <div class="filesContainer">
+                {{$act := .action}}
+                {{ $nodir := 0 }}
+                {{ $nofile := 0 }}
+                    {{ range $dir := .dirs }}
+                    <div class="singleFile">
+                        <a href="{{$dir}}"><i class="far fa-folder"></i> {{$dir}}</a>
+                    </div>
+                    {{ else }}
+                        {{ $nodir = 1 }}
+                    {{ end }}
+                    {{ range $file := .files }}
+                    <div class="singleFile">
+                        <a href="/dl{{$act}}/{{$file}}">{{$file}}</a>
+                    </div>
+                    {{ else }}
+                        {{ $nofile = 1 }}
+                    {{ end }}
+                    {{ if $nodir }}
+                        {{ if $nofile }}
+                            <div class="noFile">
+                                <span class="nothing">This is an empty directory</span>
+                            </div>
+                        {{ end }}
+                    {{ end }}
+            </div>
+            <div class="singleLine"></div>
+            <div class="footer">
+                本站点不会长时间处于开启状态，请尽快下载。
+            </div>
+        </div>
+    </body>
+</html>
