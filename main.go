@@ -18,7 +18,7 @@ func GetOutboundIP() net.IP {
 	}
 	defer conn.Close()
 
-	localAddr := conn.LocalAddr().(*net.UDPAddr)
+	localAddr := conn.LocalAddr().(*net.TCPAddr)
 
 	return localAddr.IP
 }
